@@ -32,11 +32,11 @@ endif
 # =============================================================================
 # Header Setup
 # =============================================================================
-conf_data = configuration_data()
+cdata = configuration_data()
 conf_h = configure_file(
   input: 'config.h.in',
   output: 'config.h',
-  configuration: conf_data,
+  configuration: cdata,
 )
 
 public_headers = files(
@@ -44,8 +44,8 @@ public_headers = files(
   'rpc/types.h',
   'rpc/xdr.h',
 ) + conf_h
-public_includes = include_directories('rpc')
-private_includes = include_directories('.')
+public_inc = include_directories('rpc')
+private_inc = include_directories('.')
 install_headers(public_headers, subdir: 'rpc')
 
 # =============================================================================
@@ -62,10 +62,10 @@ sources = files(
   'xdr_stdio.c',
 )
 
-portablexdr_lib = library(
+xdr_lib = library(
   'xdr',
   sources,
-  include_directories: [private_includes, public_includes],
+  include_directories: [private_inc, public_inc],
   install: true,
 )
 
@@ -74,7 +74,7 @@ portablexdr_lib = library(
 # =============================================================================
 pkg = import('pkgconfig')
 pkg.generate(
-  portablexdr_lib,
+  xdr_lib,
   name: 'portablexdr',
   description: 'Portable XDR library',
   version: meson.project_version(),
