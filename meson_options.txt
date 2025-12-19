@@ -1,0 +1,67 @@
+# =============================================================================
+# Core libraries to build
+# =============================================================================
+
+option(
+    'client_only',
+    type: 'boolean',
+    value: false,
+    description: 'Only build UDA client',
+)
+
+option(
+    'server_only',
+    type: 'boolean',
+    value: false,
+    description: 'Only build UDA server',
+)
+
+option(
+    'logging_backend',
+    type: 'combo',
+    choices: ['file', 'syslog'],
+    value: 'file',
+    description: 'Logging backend to use (file or syslog)',
+)
+
+# =============================================================================
+# Global Options
+# =============================================================================
+option(
+    'tests',
+    type: 'boolean',
+    value: false,
+    description: 'Build test suite (auto-enabled in debug builds)',
+)
+
+# =============================================================================
+# Wrapper libraries to build
+# =============================================================================
+
+option(
+    'wrapper_cxx',
+    type: 'boolean',
+    value: false,
+    description: 'Build C++ wrapper library',
+)
+
+option(
+    'wrapper_python',
+    type: 'boolean',
+    value: false,
+    description: 'Build Python wrapper library',
+)
+
+option(
+    'wrapper_java',
+    type: 'boolean',
+    value: false,
+    description: 'Build Java wrapper library',
+)
+
+option(
+    'wrapper_idl',
+    type: 'boolean',
+    value: false,
+    description: 'Build IDL wrapper library',
+)
