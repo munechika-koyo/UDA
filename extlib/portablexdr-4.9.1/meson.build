@@ -29,6 +29,19 @@ if host_system != 'windows'
   )
 endif
 
+if host_system == 'windows'
+  add_project_arguments(
+    '-DBIG_ENDIAN=1',
+    '-DLITTLE_ENDIAN=2',
+    language: 'c',
+  )
+  if host_machine.endian() == 'big'
+    add_project_arguments('-DBYTE_ORDER=1', language: 'c')
+  else
+    add_project_arguments('-DBYTE_ORDER=2', language: 'c')
+  endif
+endif
+
 # =============================================================================
 # Header Setup
 # =============================================================================
