@@ -80,6 +80,7 @@ xdr_lib = library(
   sources,
   include_directories: [private_inc, public_inc],
   install: true,
+  vs_module_defs: 'xdr.def',
 )
 
 # =============================================================================
